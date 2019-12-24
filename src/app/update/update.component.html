@@ -1,0 +1,35 @@
+
+<mat-card>
+  <form [formGroup]="myForm">
+    <div class="column">
+    <h4>{{titre}}</h4>
+      <mat-form-field appearance="outline">
+        <mat-label>Titre</mat-label>
+        <input matInput formControlName="titre" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Image</mat-label>
+        <input matInput formControlName="imageUrl" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Etaps</mat-label>
+        <textarea matInput rows="6" formControlName="etaps" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Ingredients</mat-label>
+        <textarea matInput rows="6" formControlName="ingredients" required></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div class="actions">
+    <button mat-button [routerLink]="['/list']" type="button">Annuler</button>&nbsp;&nbsp;
+    <button mat-raised-button color="primary" (click)="submit(myForm.value)"
+      [disabled]="myForm.invalid">Enregistre</button>
+  </div>
+</mat-card>

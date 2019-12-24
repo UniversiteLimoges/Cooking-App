@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span [routerLink]="['/list']">Mes recette</span>
+    <span class="example-spacer"></span>
+    <button mat-button [matMenuTriggerFor]="beforeMenu">
+      Moi
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item [routerLink]="['/update/0']">Ajouter recette</button>
+      <button mat-menu-item>Déconnecter</button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
