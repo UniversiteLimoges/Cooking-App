@@ -2,7 +2,7 @@ export class Recette {
   id = 0;
   titre = '';
   description = '';
-  etaps = '';
+  etapes = '';
   ingredients = '';
   imageUrl = '';
 }

@@ -10,10 +10,9 @@ export class DbFakeService {
     {
       id: 1,
       titre: `Coquilles Saint Jacques gratinées`,
-      description: `Pour votre prochain dîner de fête, vous avez promis d’épater à vos amis et votre famille,
-          en leur concoctant un mets succulent, `,
+      description: `Pour votre prochain dîner de fête, vous avez promis d’épater à vos amis et votre famille en leur concoctant un met succulent`,
       imageUrl: `https://static.cuisineaz.com/240x192/i107767-coquilles-saint-jacques-gratinees.jpg`,
-      etaps: `
+      etapes: `
       Ouvrez les coquilles Saint-Jacques puis retirez les noix et les coraux.
       Lavez-les et rangez-les sur du papier absorbant pour les faire s'égoutter.
       Une fois sèches, coupez-les en cubes en laissant les coraux entiers. Réservez.;
@@ -26,7 +25,7 @@ export class DbFakeService {
       description: `Pour votre prochain dîner de fête, vous avez promis d’épater à vos amis et votre famille,
           en leur concoctant un mets succulent, `,
       imageUrl: `https://static.cuisineaz.com/240x192/i76914-homard-mi-cuit-au-beurre-a-la-menthe-et-aux-amandes.jpg`,
-      etaps: `
+      etapes: `
       Ouvrez les coquilles Saint-Jacques puis retirez les noix et les coraux.
       Lavez-les et rangez-les sur du papier absorbant pour les faire s'égoutter.
       Une fois sèches, coupez-les en cubes en laissant les coraux entiers. Réservez.;
@@ -39,7 +38,7 @@ export class DbFakeService {
       description: `Pour votre prochain dîner de fête, vous avez promis d’épater à vos amis et votre famille,
           en leur concoctant un mets succulent, `,
       imageUrl: `https://static.cuisineaz.com/320x320/i77798-tiramisu-a-la-mangue-en-verrine.jpg`,
-      etaps: `
+      etapes: `
       Ouvrez les coquilles Saint-Jacques puis retirez les noix et les coraux.
       Lavez-les et rangez-les sur du papier absorbant pour les faire s'égoutter.
       Une fois sèches, coupez-les en cubes en laissant les coraux entiers. Réservez.;
@@ -53,7 +52,7 @@ export class DbFakeService {
       description: `Pour votre prochain dîner de fête, vous avez promis d’épater à vos amis et votre famille,
           en leur concoctant un mets succulent, `,
       imageUrl: `https://static.cuisineaz.com/320x320/i91902-spaghetti-au-homard.jpg`,
-      etaps: `
+      etapes: `
       Ouvrez les coquilles Saint-Jacques puis retirez les noix et les coraux.
       Lavez-les et rangez-les sur du papier absorbant pour les faire s'égoutter.
       Une fois sèches, coupez-les en cubes en laissant les coraux entiers. Réservez.;

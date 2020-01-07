@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateComponent implements OnInit {
   myForm: FormGroup;
   id = 0;
+  
   o = new Recette();
   titre = 'Ajout';
   constructor(private fb: FormBuilder, private route: ActivatedRoute
@@ -30,14 +31,13 @@ export class UpdateComponent implements OnInit {
     }
   }
 
-
   createForm() {
     this.myForm = this.fb.group({
       id: this.o.id,
       titre: [this.o.titre, [Validators.required]],
       description: [this.o.description, [Validators.required]],
       imageUrl: [this.o.imageUrl, [Validators.required]],
-      etaps: [this.o.etaps, [Validators.required]],
+      etapes: [this.o.etapes, [Validators.required]],
       ingredients: [this.o.ingredients, [Validators.required]],
     });
   }
