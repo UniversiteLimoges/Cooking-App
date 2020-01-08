@@ -9,4 +9,12 @@ mat-card {
       margin-bottom: 20px;
     }
   }
+
+  .myrow {
+    display: flex;
+    mat-form-field {
+      width: 100%;
+      // justify-content: space-between;
+    }
+  }
 }

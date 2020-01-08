@@ -1,6 +1,6 @@
-import { Recette } from './../models/recette';
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { RecipeService } from '../services/recipe.service';
+import { Recipe } from '../models/recette';
 
 @Component({
   selector: 'app-list',
@@ -8,16 +8,25 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  list: Recette[] = [];
+  list: Recipe[] = [];
 
-  constructor(private service: ApiService) { }
+  constructor(private service: RecipeService) { }
 
   ngOnInit() {
     this.getAll();
+    // this.service2.getAll().subscribe(r => {
+    //   console.log(r)
+    // });
+
+    this.service.search('as').subscribe(r => {
+      console.log('teast search reslut => ');
+      console.log(r);
+    });
   }
 
   getAll() {
     this.service.getAll().subscribe(r => {
+      console.log(r);
       this.list = r;
     });
   }

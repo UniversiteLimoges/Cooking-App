@@ -1,21 +1,23 @@
 
 <mat-card>
-  <h4>{{o.titre}}</h4>
+  <h4>{{o.name}}</h4>
     <div class="row">
 
       <div class="col-md-4">
-        <img [src]="o.imageUrl" alt="" srcset="">
+        <img [src]="o.url" alt="" srcset="">
       </div>
 
       <div class="col-md-8">
-        <h5>Description</h5>
-        <p>{{o.description}}</p>
+
+        <h5>Categorie</h5>
+        <p>{{o.type}}</p>
+
         <hr>
-        <h5>Ingredients</h5>
-        <p>{{o.ingredients}}</p>
+        <h5>Durée</h5>
+        <p>{{o.duration}}</p>
         <hr>
-        <h5>Etapes</h5>
-        <p>{{o.etaps}}</p>
+        <h5>Nb de personnes</h5>
+        <p>{{o.serving}}</p>
       </div>
     </div>
 

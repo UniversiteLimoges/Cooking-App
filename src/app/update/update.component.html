@@ -1,34 +1,90 @@
 <mat-card>
   <form [formGroup]="myForm">
     <div class="column">
-    <h4>{{titre}}</h4>
+      <h4>{{titre}}</h4>
       <mat-form-field appearance="outline">
         <mat-label>Titre</mat-label>
-        <input matInput formControlName="titre" required>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Description</mat-label>
-        <input matInput formControlName="description" required>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Image</mat-label>
-        <input matInput formControlName="imageUrl" required>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Etapes</mat-label>
-        <textarea matInput rows="6" formControlName="etapes" required></textarea>
+        <input matInput formControlName="name" required>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
-        <mat-label>Ingrédients</mat-label>
-        <textarea matInput rows="6" formControlName="ingredients" required></textarea>
+        <mat-label>Type</mat-label>
+        <mat-select #type formControlName="type">
+          <mat-option value="">...</mat-option>
+          <mat-option *ngFor="let e of types" [value]="e"> {{e}}</mat-option>
+        </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>{{type.value === 'link' ? 'Url de recette' : 'Image Url'}}</mat-label>
+        <input matInput formControlName="url" required>
+      </mat-form-field>
+      <div class="myrow">
+        <mat-form-field appearance="outline">
+          <mat-label>Durée</mat-label>
+          <input matInput formControlName="duration" required>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field appearance="outline">
+          <mat-label>Nb de personnes</mat-label>
+          <input matInput formControlName="serving" required>
+        </mat-form-field>
+      </div>
+      <div formGroupName="details">
+        <h6>ingredients</h6>
+        <div formArrayName="ingredients">
+          <div *ngFor="let ingredient of getIngredients.controls; let i=index" [formGroupName]="i">
+            <!-- <mat-form-field appearance="outline" *ngIf="true">
+              <mat-label>ingredientId</mat-label>
+              <input matInput formControlName="ingredientId" [value]="i" readonly>
+            </mat-form-field> -->
+            <div class="myrow">
+              <mat-form-field appearance="outline">
+                <mat-label>Quantity</mat-label>
+                <input matInput formControlName="quantity" required>
+              </mat-form-field>
+              <!-- &nbsp;&nbsp;
+              <mat-form-field appearance="outline">
+                <mat-label>Unit</mat-label>
+                <input matInput formControlName="unit" required>
+              </mat-form-field> -->
+              <button mat-icon-button (click)="deleteIngredient(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button mat-raised-button color="accent" type="button" (click)="addIngredients()">
+          <mat-icon>add</mat-icon> ingrédient
+        </button>
+        <!--  -->
+        <h6>instructions</h6>
+        <div formArrayName="instructions">
+          <div *ngFor="let ingredient of getInstructions.controls; let i=index" [formGroupName]="i">
+            <div class="myrow">
+              <mat-form-field appearance="outline">
+                <mat-label>Content</mat-label>
+                <input matInput formControlName="content" required>
+              </mat-form-field>
+              <button mat-icon-button (click)="deleteInstructions(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button mat-raised-button color="accent" type="button" (click)="addInstructions()">
+          <mat-icon>add</mat-icon> instructions
+        </button>
+      </div>
     </div>
   </form>
 
   <div class="actions">
     <button mat-button [routerLink]="['/list']" type="button">Annuler</button>&nbsp;&nbsp;
     <button mat-raised-button color="primary" (click)="submit(myForm.value)"
-      [disabled]="myForm.invalid">Enregistrer</button>
+      [disabled]="myForm.invalid">Enregistre</button>
   </div>
 </mat-card>
+
+<!-- {{myForm.value | json}} -->

@@ -1,7 +1,7 @@
+import { RecipeService } from './../services/recipe.service';
+import { Recipe } from './../models/recette';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Recette } from '../models/recette';
-import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-detail',
@@ -9,13 +9,14 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  o = new Recette();
-  constructor(private route: ActivatedRoute, private service: ApiService) { }
+  o = new Recipe();
+  constructor(private route: ActivatedRoute, private service: RecipeService) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
     this.service.getById(id).subscribe(r => {
+      console.log(r);
       this.o = r;
     });
   }

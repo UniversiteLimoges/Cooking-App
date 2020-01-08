@@ -1,8 +1,9 @@
-import { Recette } from './../models/recette';
-import { ApiService } from './../services/api.service';
+import { Instruction } from './../models/recette';
+import { RecipeService } from './../services/recipe.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Recipe, Ingredient } from '../models/recette';
 
 @Component({
   selector: 'app-update',
@@ -11,44 +12,76 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UpdateComponent implements OnInit {
   myForm: FormGroup;
-  id = 0;
-  
-  o = new Recette();
+  id = '';
+  recip = new Recipe();
   titre = 'Ajout';
+  types = ['link', 'details'];
+  isEdit = false;
   constructor(private fb: FormBuilder, private route: ActivatedRoute
-    , private service: ApiService, private router: Router) { }
+    , private service: RecipeService, private router: Router) { }
 
   ngOnInit() {
     this.createForm();
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
     // because admin can update this, and we dont want his name in this recip
-    if (this.id !== 0) {
-      this.titre = 'Modification'
+    if (this.id !== 'new') {
+      this.isEdit = true,
+      this.titre = 'Modification';
       this.service.getById(this.id).subscribe(r => {
-        this.o = r;
+        this.recip = r;
         this.createForm();
       });
     }
   }
 
+
   createForm() {
     this.myForm = this.fb.group({
-      id: this.o.id,
-      titre: [this.o.titre, [Validators.required]],
-      description: [this.o.description, [Validators.required]],
-      imageUrl: [this.o.imageUrl, [Validators.required]],
-      etapes: [this.o.etapes, [Validators.required]],
-      ingredients: [this.o.ingredients, [Validators.required]],
+      _id: this.recip._id,
+      name: [this.recip.name, [Validators.required]],
+      type: [this.recip.type, [Validators.required]],
+      url: [this.recip.url, [Validators.required]],
+      duration: [this.recip.duration, [Validators.required]],
+      serving: [this.recip.serving, [Validators.required]],
+      details: this.fb.group({
+        ingredients: this.fb.array(this.recip.details.ingredients.map(i => this.fb.group(i))),
+        instructions: this.fb.array(this.recip.details.instructions.map(i => this.fb.group(i))),
+      }),
     });
   }
 
-  submit(o: Recette) {
-    if (this.id === 0) {
+  get getIngredients(): FormArray {
+    return this.myForm.get('details').get('ingredients') as FormArray;
+  }
+
+  get getInstructions(): FormArray {
+    return this.myForm.get('details').get('instructions') as FormArray;
+  }
+
+  addIngredients() {
+    this.getIngredients.push(this.fb.group(new Ingredient()));
+  }
+
+  addInstructions() {
+    this.getInstructions.push(this.fb.group(new Instruction()));
+  }
+
+  deleteIngredient(i: number) {
+    this.getIngredients.removeAt(i);
+  }
+
+  deleteInstructions(i: number) {
+    this.getInstructions.removeAt(i);
+  }
+
+  submit(o: Recipe) {
+    if (!this.isEdit) {
       this.service.post(o).subscribe(r => {
+        console.log(o);
         this.router.navigate(['/list']);
       });
     } else {
-      this.service.put(o.id, o).subscribe(r => {
+      this.service.put(o._id, o).subscribe(r => {
         this.router.navigate(['/list']);
       });
     }

@@ -1,18 +1,19 @@
 <div class="row justify-content-center">
   <div class="col-md-3" *ngFor="let e of list; let i=index">
     <mat-card>
-      <p>{{e.titre}}</p>
-      <div class="col-md-12" [routerLink]="['/detail', e.id]">
-        <img [src]="e.imageUrl" alt="" srcset="">
+      <p>{{e.name}}</p>
+      <div class="col-md-12" [routerLink]="['/detail', e._id]">
+        <img [src]="e.url" alt="" srcset="">
       </div>
       <div class="actions">
-        <button mat-icon-button [routerLink]="['/update', e.id]" color="primary">
+        <button mat-icon-button [routerLink]="['/update', e._id]" color="primary">
           <mat-icon>create</mat-icon>
         </button>
-        <button mat-icon-button (click)="delete(e.id)" color="warn">
+        <button mat-icon-button (click)="delete(e._id)" color="warn">
           <mat-icon>delete_sweep</mat-icon>
         </button>
       </div>
     </mat-card>
   </div>
+  <!-- {{list | json}} -->
 </div>
