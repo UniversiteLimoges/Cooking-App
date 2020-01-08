@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "remote": "git remote rm origin",
+    "remove": "git remote rm origin",
     "init0": "git init && git remote add origin https://github.com/djm2x/recette-fake.git",
     "init": "git init && git remote add origin https://github.com/UniversiteLimoges/Cooking-App",
     "push": "git add . && git commit -m \"first commit\" && git push -u origin master"
