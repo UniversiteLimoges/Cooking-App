@@ -11,7 +11,7 @@
     "remove": "git remote rm origin",
     "init0": "git init && git remote add origin https://github.com/djm2x/recette-fake.git",
     "init": "git init && git remote add origin https://github.com/UniversiteLimoges/Cooking-App",
-    "push": "git add . && git commit -m \"add api service\" && git push -u origin master"
+    "push": "git add . && git commit -m \"some changes\" && git push -u origin master"
   },
   "private": true,
   "dependencies": {

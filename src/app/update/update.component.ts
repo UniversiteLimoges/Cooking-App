@@ -1,7 +1,7 @@
 import { Instruction } from './../models/recette';
 import { RecipeService } from './../services/recipe.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe, Ingredient } from '../models/recette';
 
@@ -48,6 +48,10 @@ export class UpdateComponent implements OnInit {
         instructions: this.fb.array(this.recip.details.instructions.map(i => this.fb.group(i))),
       }),
     });
+  }
+
+  get type() {
+    return this.myForm.get('type') as FormControl;
   }
 
   get getIngredients(): FormArray {

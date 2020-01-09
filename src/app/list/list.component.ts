@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
     // this.service2.getAll().subscribe(r => {
     //   console.log(r)
     // });
-
+    console.log('dzdzdzdzd')
     this.service.search('as').subscribe(r => {
       console.log('teast search reslut => ');
       console.log(r);

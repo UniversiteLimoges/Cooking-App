@@ -9,7 +9,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Type</mat-label>
-        <mat-select #type formControlName="type">
+        <mat-select formControlName="type">
           <mat-option value="">...</mat-option>
           <mat-option *ngFor="let e of types" [value]="e"> {{e}}</mat-option>
         </mat-select>
@@ -19,7 +19,7 @@
         <mat-label>{{type.value === 'link' ? 'Url de recette' : 'Image Url'}}</mat-label>
         <input matInput formControlName="url" required>
       </mat-form-field>
-      <div class="myrow">
+      <div class="myrow" *ngIf="type.value === 'details'">
         <mat-form-field appearance="outline">
           <mat-label>Durée</mat-label>
           <input matInput formControlName="duration" required>
@@ -30,7 +30,7 @@
           <input matInput formControlName="serving" required>
         </mat-form-field>
       </div>
-      <div formGroupName="details">
+      <div formGroupName="details" *ngIf="type.value === 'details'">
         <h6>ingredients</h6>
         <div formArrayName="ingredients">
           <div *ngFor="let ingredient of getIngredients.controls; let i=index" [formGroupName]="i">
@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <button mat-raised-button color="accent" type="button" (click)="addIngredients()">
+        <button class="mb-2" mat-raised-button color="accent" type="button" (click)="addIngredients()">
           <mat-icon>add</mat-icon> ingrédient
         </button>
         <!--  -->
@@ -73,7 +73,7 @@
           </div>
         </div>
 
-        <button mat-raised-button color="accent" type="button" (click)="addInstructions()">
+        <button class="mb-2" mat-raised-button color="accent" type="button" (click)="addInstructions()">
           <mat-icon>add</mat-icon> instructions
         </button>
       </div>
