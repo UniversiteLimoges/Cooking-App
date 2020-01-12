@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span [routerLink]="['/list']">Mes recette</span>
+    <span [routerLink]="['/list']">Mes recettes</span>
     <span class="example-spacer"></span>
     <button mat-button [matMenuTriggerFor]="beforeMenu">
-      Moi
+      <img src="../assets/profil.png/"  height="30" width="30">
     </button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <button mat-menu-item [routerLink]="['/update/new']">Ajouter recette</button>
