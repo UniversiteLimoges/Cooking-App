@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recette';
+import { MatDialog } from '@angular/material';
+import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +12,7 @@ import { Recipe } from '../models/recette';
 export class ListComponent implements OnInit {
   list: Recipe[] = [];
 
-  constructor(private service: RecipeService) { }
+  constructor(private service: RecipeService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAll();
@@ -31,9 +33,22 @@ export class ListComponent implements OnInit {
     });
   }
 
-  delete(id) {
-    this.service.delete(id).subscribe(r => {
-      this.getAll();
+  // delete(id) {
+    
+  // }
+
+  delete(id): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '250px', 
+      // data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.service.delete(id).subscribe(r => {
+          this.getAll();
+        });
+      }
     });
   }
 
