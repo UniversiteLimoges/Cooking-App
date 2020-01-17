@@ -1,7 +1,6 @@
 export class Ingredient {
   ingredientId = null;
   quantity = 0;
-  // unit = '';
 }
 
 export class Instruction {

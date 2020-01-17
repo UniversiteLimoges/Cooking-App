@@ -9,15 +9,16 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
-  o = new Recipe();
+  recipe = new Recipe();
   constructor(private route: ActivatedRoute, private service: RecipeService) { }
+  
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.service.getById(id).subscribe(r => {
       console.log(r);
-      this.o = r;
+      this.recipe = r;
     });
   }
 

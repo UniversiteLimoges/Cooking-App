@@ -1,21 +1,27 @@
 
 <mat-card>
-  <h4>{{o.name}}</h4>
+  <h4>{{recipe.name}}</h4>
     <div class="row">
 
       <div class="col-md-8">
-        <img [src]="o.url" alt="" srcset="">
+        <img [src]="recipe.url" alt="" srcset="">
       </div>
 
       <div class="col-md-8">
         <h5>Catégorie</h5>
-        <p>{{o.type}}</p>
+        <p>{{recipe.type}}</p>
         <hr>
         <h5>Durée</h5>
-        <p>{{o.duration}}</p>
+        <p>{{recipe.duration}}</p>
         <hr>
         <h5>Nombre de personnes</h5>
-        <p>{{o.serving}}</p>
+        <p>{{recipe.serving}}</p>
+        <hr>
+        <h5>Instructions</h5>
+        <p *ngFor="let e of recipe.details.instructions">
+          {{e.content}}
+        </p>
+
       </div>
     </div>
 
