@@ -21,17 +21,18 @@
       </mat-form-field>
       <div class="myrow" *ngIf="type.value === 'details'">
         <mat-form-field appearance="outline">
-          <mat-label>Durée</mat-label>
+          <mat-label>Durée (min)</mat-label>
           <input matInput formControlName="duration" required>
         </mat-form-field>
         &nbsp;&nbsp;
         <mat-form-field appearance="outline">
-          <mat-label>Nb de personnes</mat-label>
+          <mat-label>Nombre de personnes</mat-label>
           <input matInput formControlName="serving" required>
         </mat-form-field>
       </div>
       <div formGroupName="details" *ngIf="type.value === 'details'">
-        <h6>ingredients</h6>
+        <hr>
+        <h6>Ingrédients</h6>
         <div formArrayName="ingredients">
           <div *ngFor="let ingredient of getIngredients.controls; let i=index" [formGroupName]="i">
             <!-- <mat-form-field appearance="outline" *ngIf="true">
@@ -40,7 +41,7 @@
             </mat-form-field> -->
             <div class="myrow">
               <mat-form-field appearance="outline">
-                <mat-label>Quantity</mat-label>
+                <mat-label>Quantité</mat-label>
                 <input matInput formControlName="quantity" required>
               </mat-form-field>
               <!-- &nbsp;&nbsp;
@@ -57,13 +58,14 @@
         <button class="mb-2" mat-raised-button color="accent" type="button" (click)="addIngredients()">
           <mat-icon>add</mat-icon> ingrédient
         </button>
-        <!--  -->
-        <h6>instructions</h6>
+        <hr>
+        <!-- Instructions -->
+        <h6>Instructions</h6>
         <div formArrayName="instructions">
           <div *ngFor="let ingredient of getInstructions.controls; let i=index" [formGroupName]="i">
             <div class="myrow">
               <mat-form-field appearance="outline">
-                <mat-label>Content</mat-label>
+                <mat-label>Contenu</mat-label>
                 <input matInput formControlName="content" required>
               </mat-form-field>
               <button mat-icon-button (click)="deleteInstructions(i)">
@@ -72,9 +74,8 @@
             </div>
           </div>
         </div>
-
         <button class="mb-2" mat-raised-button color="accent" type="button" (click)="addInstructions()">
-          <mat-icon>add</mat-icon> instructions
+          <mat-icon>add</mat-icon> instruction
         </button>
       </div>
     </div>
@@ -83,7 +84,7 @@
   <div class="actions">
     <button mat-button [routerLink]="['/list']" type="button">Annuler</button>&nbsp;&nbsp;
     <button mat-raised-button color="primary" (click)="submit(myForm.value)"
-      [disabled]="myForm.invalid">Enregistre</button>
+      [disabled]="myForm.invalid">Enregistrer</button>
   </div>
 </mat-card>
 

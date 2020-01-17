@@ -2,6 +2,12 @@
   <mat-toolbar-row>
     <span [routerLink]="['/list']">Mes recettes</span>
     <span class="example-spacer"></span>
+    
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    <!-- <button mat-button><i class="material-icons">search</i>Rechercher</button> -->
+    
     <button mat-button [matMenuTriggerFor]="beforeMenu">
       <img src="../assets/profil.png/"  height="30" width="30">
     </button>

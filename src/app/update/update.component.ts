@@ -34,7 +34,6 @@ export class UpdateComponent implements OnInit {
     }
   }
 
-
   createForm() {
     this.myForm = this.fb.group({
       _id: this.recip._id,
@@ -62,30 +61,34 @@ export class UpdateComponent implements OnInit {
     return this.myForm.get('details').get('instructions') as FormArray;
   }
 
+  // Add an ingretient
   addIngredients() {
     this.getIngredients.push(this.fb.group(new Ingredient()));
   }
 
+  // Add an instruction
   addInstructions() {
     this.getInstructions.push(this.fb.group(new Instruction()));
   }
 
+  // Delete an ingretient
   deleteIngredient(i: number) {
     this.getIngredients.removeAt(i);
   }
 
+  // Delete an instruction
   deleteInstructions(i: number) {
     this.getInstructions.removeAt(i);
   }
 
-  submit(o: Recipe) {
+  // Send the form
+  submit(recipe: Recipe) {
     if (!this.isEdit) {
-      this.service.post(o).subscribe(r => {
-        console.log(o);
+      this.service.post(recipe).subscribe(r => {
         this.router.navigate(['/list']);
       });
     } else {
-      this.service.put(o._id, o).subscribe(r => {
+      this.service.put(recipe._id, recipe).subscribe(r => {
         this.router.navigate(['/list']);
       });
     }
