@@ -46,10 +46,15 @@
               </mat-form-field>
               &nbsp;&nbsp;
               <mat-form-field appearance="outline">
+                <mat-label>Unit</mat-label>
+                <input matInput formControlName="unit" readonly>
+              </mat-form-field>
+              &nbsp;&nbsp;
+              <mat-form-field appearance="outline">
                 <mat-label>Ingredients</mat-label>
                 <mat-select formControlName="ingredientId">
                   <mat-option value="">...</mat-option>
-                  <mat-option *ngFor="let e of ingredients | async" [value]="e._id"> {{e.name}}</mat-option>
+                  <mat-option *ngFor="let e of ingredients" [value]="e._id"> {{e.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
               <button mat-icon-button (click)="deleteIngredient(i)">

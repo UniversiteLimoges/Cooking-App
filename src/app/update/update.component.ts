@@ -19,7 +19,7 @@ export class UpdateComponent implements OnInit {
   titre = 'Ajout';
   types = ['link', 'details'];
   isEdit = false;
-  ingredients = this.serviceIng.getAll();
+  ingredients = [];
   constructor(private fb: FormBuilder, private route: ActivatedRoute
     , private service: RecipeService, private router: Router
     , private serviceIng: IngredientInfoService, public location: Location
@@ -37,6 +37,10 @@ export class UpdateComponent implements OnInit {
         this.createForm();
       });
     }
+
+    this.serviceIng.getAll().subscribe(r => {
+      this.ingredients = r;
+    });
   }
 
   createForm() {

@@ -27,8 +27,8 @@ export class RecipeService {
   }
 
   // list
-  search(word, pageSize = 10) {
-    return this.http.get(`${API_URL}?name[$search]=${word}&$limit=${pageSize}`).pipe(map((e: any) => e.data as Recipe[]));
+  search(startIndex, pageSize, name) {
+    return this.http.get(`${API_URL}?name[$search]=${name}&$skip=${startIndex}&$limit=${pageSize}`);
   }
 
   // list

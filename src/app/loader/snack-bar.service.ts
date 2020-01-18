@@ -23,7 +23,7 @@ export class SnackBarService {
   notifyOk(code, message: string) {
     const config = {
       panelClass: ['green-snackbar'],
-      duration: 1500,
+      duration: 1200,
       // horizontalPosition: this.horizontalPosition,
       // verticalPosition: this.verticalPosition,
     };

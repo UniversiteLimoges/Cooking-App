@@ -7,6 +7,8 @@ export class Ingredient {
 export class IngredientInfo {
   _id = null;
   name = '';
+  createdAt = '';
+  updatedAt = '';
 }
 
 export class Instruction {

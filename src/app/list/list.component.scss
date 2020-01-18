@@ -21,4 +21,17 @@ mat-card {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
+  align-items: center;
+  p {
+    font-size: .9em;
+    margin: 0;
+  }
 }
+
+// .seach-zone {
+//   height: 30vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+// }
