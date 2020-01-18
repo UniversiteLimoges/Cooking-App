@@ -3,6 +3,7 @@ import { RecipeService } from '../services/recipe.service';
 import { Recipe } from '../models/recette';
 import { MatDialog } from '@angular/material';
 import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.component';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -11,40 +12,38 @@ import { ConfirmDeleteComponent } from '../confirm-delete/confirm-delete.compone
 })
 export class ListComponent implements OnInit {
   list: Recipe[] = [];
-
+  nom = new FormControl('');
+  linkImage = '../../assets/link.png';
   constructor(private service: RecipeService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getAll();
-    // this.service2.getAll().subscribe(r => {
-    //   console.log(r)
-    // });
-    console.log('dzdzdzdzd')
-    this.service.search('as').subscribe(r => {
-      console.log('teast search reslut => ');
-      console.log(r);
-    });
   }
 
   getAll() {
     this.service.getAll().subscribe(r => {
-      console.log(r);
       this.list = r;
     });
   }
 
-  // delete(id) {
-    
-  // }
+  search() {
+    this.service.search(this.nom.value).subscribe(r => {
+      this.list = r;
+    });
+  }
+
+  reset() {
+    this.nom.setValue('');
+    this.getAll();
+  }
 
   delete(id): void {
     const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-      width: '250px', 
-      // data: {name: this.name, animal: this.animal}
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
         this.service.delete(id).subscribe(r => {
           this.getAll();
         });

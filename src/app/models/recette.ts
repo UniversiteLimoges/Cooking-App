@@ -1,6 +1,12 @@
 export class Ingredient {
   ingredientId = null;
   quantity = 0;
+  unit = 'unit';
+}
+
+export class IngredientInfo {
+  _id = null;
+  name = '';
 }
 
 export class Instruction {

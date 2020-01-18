@@ -44,11 +44,14 @@
                 <mat-label>Quantité</mat-label>
                 <input matInput formControlName="quantity" required>
               </mat-form-field>
-              <!-- &nbsp;&nbsp;
+              &nbsp;&nbsp;
               <mat-form-field appearance="outline">
-                <mat-label>Unit</mat-label>
-                <input matInput formControlName="unit" required>
-              </mat-form-field> -->
+                <mat-label>Ingredients</mat-label>
+                <mat-select formControlName="ingredientId">
+                  <mat-option value="">...</mat-option>
+                  <mat-option *ngFor="let e of ingredients | async" [value]="e._id"> {{e.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
               <button mat-icon-button (click)="deleteIngredient(i)">
                 <mat-icon>delete</mat-icon>
               </button>
@@ -81,10 +84,10 @@
     </div>
   </form>
 
-  <div class="actions">
-    <button mat-button [routerLink]="['/list']" type="button">Annuler</button>&nbsp;&nbsp;
+  <div class="actions mt-5">
+    <button mat-raised-button (click)="location.back()" type="button">Retour</button>&nbsp;&nbsp;
     <button mat-raised-button color="primary" (click)="submit(myForm.value)"
-      [disabled]="myForm.invalid">Enregistrer</button>
+      [disabled]="type.value === 'details' && myForm.invalid">Enregistrer</button>
   </div>
 </mat-card>
 

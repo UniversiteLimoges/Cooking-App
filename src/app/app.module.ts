@@ -5,12 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
 import { UpdateComponent } from './update/update.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { IngredientComponent } from './ingredient/ingredient.component';
+import { LoaderModule } from './loader/loader.module';
+import { LoaderInterceptor } from './loader/loader-interceptor';
 
 @NgModule({
   declarations: [
@@ -19,6 +22,7 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
     DetailComponent,
     UpdateComponent,
     ConfirmDeleteComponent,
+    IngredientComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,11 +32,18 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
     BrowserAnimationsModule,
     HttpClientModule,
     MatModule,
+    LoaderModule,
   ],
   entryComponents: [
     ConfirmDeleteComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

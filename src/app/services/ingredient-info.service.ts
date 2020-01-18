@@ -4,11 +4,11 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
-const API_URL = environment.url + 'recipes';
+const API_URL = environment.url + 'ingredients';
 @Injectable({
   providedIn: 'root'
 })
-export class RecipeService {
+export class IngredientInfoService {
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +17,8 @@ export class RecipeService {
   }
 
   // update
-  put(id, recette: any) {
-    return this.http.put(`${API_URL}/${id}`, recette);
+  put(id, ingredient: any) {
+    return this.http.put(`${API_URL}/${id}`, ingredient);
   }
 
   // list
@@ -36,7 +36,7 @@ export class RecipeService {
     return this.http.get(`${API_URL}?&$skip=${startIndex}$limit=${pageSize}`).pipe(map((e: any) => e.data as Recipe[]));
   }
 
-  // get recette
+  // get
   getById(id) {
     return this.http.get<Recipe>(`${API_URL}/${id}`);
   }

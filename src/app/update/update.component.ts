@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe, Ingredient } from '../models/recette';
+import { IngredientInfoService } from '../services/ingredient-info.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update',
@@ -17,8 +19,11 @@ export class UpdateComponent implements OnInit {
   titre = 'Ajout';
   types = ['link', 'details'];
   isEdit = false;
+  ingredients = this.serviceIng.getAll();
   constructor(private fb: FormBuilder, private route: ActivatedRoute
-    , private service: RecipeService, private router: Router) { }
+    , private service: RecipeService, private router: Router
+    , private serviceIng: IngredientInfoService, public location: Location
+    ) { }
 
   ngOnInit() {
     this.createForm();
@@ -82,7 +87,8 @@ export class UpdateComponent implements OnInit {
   }
 
   // Send the form
-  submit(recipe: Recipe) {
+  async submit(recipe: Recipe) {
+
     if (!this.isEdit) {
       this.service.post(recipe).subscribe(r => {
         this.router.navigate(['/list']);

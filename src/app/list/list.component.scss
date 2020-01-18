@@ -7,9 +7,18 @@ mat-card {
     cursor: pointer;
   }
 
-  .actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
+
+}
+
+.myrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
